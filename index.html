@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ar">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Phonics Lab</title>
+
+    <!-- TailwindCSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- React & ReactDOM -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+
+    <!-- lucide-react icons (ESM build for browser) -->
+    <script type="module">
+      import { Volume2, VolumeX } from "https://cdn.skypack.dev/lucide-react";
+
+      const { useState } = React;
+
+      function PhonicsLab() {
+        const [word, setWord] = useState("");
+        const [isRecording, setIsRecording] = useState(false);
+        const [isPlaying, setIsPlaying] = useState(false);
+        const [audioUrl, setAudioUrl] = useState(null);
+
+        // بدء التسجيل
+        const startRecording = async () => {
+          try {
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            const mediaRecorder = new MediaRecorder(stream);
+            const chunks = [];
+
+            mediaRecorder.ondataavailable = (e) => {
+              chunks.push(e.data);
+            };
+
+            mediaRecorder.onstop = () => {
+              const blob = new Blob(chunks, { type: "audio/webm" });
+              const url = URL.createObjectURL(blob);
+              setAudioUrl(url);
+            };
+
+            mediaRecorder.start();
+            setIsRecording(true);
+
+            setTimeout(() => {
+              mediaRecorder.stop();
+              setIsRecording(false);
+            }, 3000);
+          } catch (err) {
+            console.error("خطأ في التسجيل:", err);
+          }
+        };
+
+        // تشغيل الصوت
+        const playAudio = () => {
+          if (audioUrl) {
+            const audio = new Audio(audioUrl);
+            setIsPlaying(true);
+            audio.play();
+            audio.onended = () => setIsPlaying(false);
+          }
+        };
+
+        return (
+          <div className="min-h-screen bg-gradient-to-br from-blue-100 to-purple-100 flex flex-col items-center justify-center p-6">
+            <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-6">
+              <h1 className="text-2xl font-bold mb-4 text-center">
+                🔤 Phonics Practice Lab
+              </h1>
+
+              {/* إدخال الكلمة */}
+              <input
+                type="text"
+                placeholder="أدخل كلمة للتدريب"
+                value={word}
+                onChange={(e) => setWord(e.target.value)}
+                className="w-full border rounded-lg p-2 mb-4"
+              />
+
+              {/* زر التسجيل */}
+              <button
+                onClick={startRecording}
+                disabled={isRecording}
+                className="w-full mb-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg py-2 disabled:opacity-50"
+              >
+                {isRecording ? "⏺ جاري التسجيل..." : "🎤 سجل صوتك"}
+              </button>
+
+              {/* زر تشغيل الصوت */}
+              <button
+                onClick={playAudio}
+                disabled={!audioUrl || isPlaying}
+                className="w-full bg-gray-200 hover:bg-gray-300 text-gray-800 rounded-lg py-2 disabled:opacity-50"
+              >
+                {isPlaying ? (
+                  <span className="flex items-center justify-center">
+                    🔊 جاري التشغيل...
+                  </span>
+                ) : (
+                  <span className="flex items-center justify-center">
+                    🔇 استمع لتسجيلك
+                  </span>
+                )}
+              </button>
+            </div>
+          </div>
+        );
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<PhonicsLab />);
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
