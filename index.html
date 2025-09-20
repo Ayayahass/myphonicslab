@@ -12,7 +12,7 @@
   </style>
 
   <script>
-    // حماية الصفحة - إذا لم يكن هناك تسجيل دخول، إعادة توجيه لصفحة login.html
+    // حماية الصفحة: لو ما فيه جلسة، نحول لصفحة الدخول
     (function(){
       const role = localStorage.getItem('role');
       if (!role) {
@@ -27,7 +27,6 @@
 </head>
 <body>
   <div class="wrap">
-    <!-- العنوان -->
     <header class="hero">
       <h1>My Phonics Lab</h1>
       <h2 class="teacher">Teacher: Aisha</h2>
@@ -37,19 +36,16 @@
       </div>
     </header>
 
-    <!-- الحروف الكبيرة -->
     <section class="panel">
       <h3>CAPITAL LETTERS</h3>
       <div id="capitalRow" class="grid"></div>
     </section>
 
-    <!-- الحروف الصغيرة -->
     <section class="panel">
       <h3>small letters</h3>
       <div id="smallRow" class="grid"></div>
     </section>
 
-    <!-- الأقسام السفلية -->
     <section class="panel sections">
       <button class="pill pink">Short Vowel</button>
       <button class="pill blue">Long Vowel</button>
@@ -62,11 +58,10 @@
     <footer class="muted tiny">Click any letter to hear its sound.</footer>
   </div>
 
-  <!-- تحميل ملف الجافاسكربت -->
+  <!-- سكربتات في النهاية -->
   <script src="app.js"></script>
-
-  <!-- استدعاء دالة بناء الحروف بعد تحميل الصفحة -->
   <script>
+    // بناء الأحرف بعد اكتمال تحميل الصفحة
     window.addEventListener('DOMContentLoaded', () => {
       initLetters();
     });
