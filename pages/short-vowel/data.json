@@ -1,0 +1,35 @@
+{
+  "lockCode": "SV2025",
+  "mouth": [
+    { "v": "a", "img": "assets/images/mouth-a.png" },
+    { "v": "e", "img": "assets/images/mouth-e.png" },
+    { "v": "i", "img": "assets/images/mouth-i.png" },
+    { "v": "o", "img": "assets/images/mouth-o.png" },
+    { "v": "u", "img": "assets/images/mouth-u.png" }
+  ],
+  "vowels": {
+    "short": {
+      "a": "assets/audio/vowels/short/a.mp3",
+      "e": "assets/audio/vowels/short/e.mp3",
+      "i": "assets/audio/vowels/short/i.mp3",
+      "o": "assets/audio/vowels/short/o.mp3",
+      "u": "assets/audio/vowels/short/u.mp3"
+    }
+  },
+  "youtube": [
+    "https://www.youtube.com/watch?v=XXXXXXXXXXX",
+    "https://www.youtube.com/watch?v=YYYYYYYYYYY"
+  ],
+  "dictation": {
+    "a": [
+      { "w": "cat", "src": "assets/audio/dictation/a/cat.mp3" },
+      { "w": "bag", "src": "assets/audio/dictation/a/bag.mp3" }
+    ],
+    "e": [
+      { "w": "bed", "src": "assets/audio/dictation/e/bed.mp3" }
+    ],
+    "i": [],
+    "o": [],
+    "u": []
+  }
+}
