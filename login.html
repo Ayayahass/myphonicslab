@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Login • My Phonics Lab</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="page page-login">
+  <div class="card">
+    <h1>My Phonics Lab</h1>
+    <p class="muted">ادخلي كود الطالب أو الأدمن</p>
+
+    <div class="role-toggle">
+      <button id="btn-student" class="active">Student</button>
+      <button id="btn-admin">Admin</button>
+    </div>
+
+    <label class="field">
+      <span>رمز الدخول</span>
+      <input id="code" type="password" placeholder="••••"/>
+    </label>
+
+    <button id="login" class="primary">دخول</button>
+  </div>
+
+  <script src="js/auth.js"></script>
+  <script>
+    Auth.initLogin();
+  </script>
+</body>
+</html>
