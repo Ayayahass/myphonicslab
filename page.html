@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Section • My Phonics Lab</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="page page-section">
+  <header class="topbar">
+    <div>
+      <a class="link" href="index.html">← Back</a>
+      <h1 id="title">Section</h1>
+    </div>
+    <nav class="top-actions">
+      <a href="admin.html" class="link" id="adminLink" style="display:none">Admin</a>
+      <button class="link" onclick="Auth.logout()">Logout</button>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <div id="content" class="content-list"></div>
+  </main>
+
+  <script src="js/auth.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/page.js"></script>
+  <script>
+    Auth.guard(['student','admin']);
+    if (localStorage.getItem('role') === 'admin') document.getElementById('adminLink').style.display='inline-flex';
+    Section.init();
+  </script>
+</body>
+</html>
