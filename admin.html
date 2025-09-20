@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ar">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>لوحة الإدارة • My Phonics Lab</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="page page-admin">
+  <header class="topbar">
+    <div>
+      <a class="link" href="index.html">← الموقع</a>
+      <h1>لوحة الإدارة</h1>
+    </div>
+    <nav class="top-actions">
+      <button class="link" onclick="Auth.logout()">Logout</button>
+    </nav>
+  </header>
+
+  <main class="wrap admin-grid">
+    <!-- الأكواد -->
+    <section class="card">
+      <h2>أكواد الدخول</h2>
+      <label class="field">
+        <span>رمز الطالب</span>
+        <input id="studentCode" type="text" placeholder="مثال: 1234">
+      </label>
+      <label class="field">
+        <span>رمز الأدمن</span>
+        <input id="adminCode" type="text" placeholder="مثال: 9999">
+      </label>
+      <button class="primary" onclick="Admin.saveCodes()">حفظ الأكواد</button>
+      <p class="muted small">الحماية على الواجهة فقط (Client-side).</p>
+    </section>
+
+    <!-- إعداد الرفع إلى GitHub -->
+    <section class="card">
+      <h2>رفع ملفات إلى الريبو</h2>
+      <label class="field"><span>GitHub Owner</span><input id="ghOwner" placeholder="username"></label>
+      <label class="field"><span>Repository</span><input id="ghRepo" placeholder="repo-name"></label>
+      <label class="field"><span>Branch</span><input id="ghBranch" value="main"></label>
+      <label class="field"><span>Personal Access Token</span><input id="ghToken" type="password" placeholder="أدخلي التوكن هنا وقت الرفع فقط"></label>
+      <p class="muted small">لن يتم حفظ التوكن. يستخدم لحظة الرفع فقط.</p>
+
+      <div class="uploader">
+        <label class="field"><span>رفع MP3/صور</span><input id="fileInput" type="file" accept=".mp3,.jpg,.jpeg,.png,.gif" multiple></label>
+        <button class="primary" onclick="Admin.uploadSelected()">رفع المحدد</button>
+        <div id="uploadLog" class="log"></div>
+      </div>
+    </section>
+
+    <!-- محتوى الصفحات -->
+    <section class="card">
+      <h2>روابط يوتيوب ومحتوى الصفحات</h2>
+      <label class="field">
+        <span>اختر الصفحة</span>
+        <select id="pageSlug">
+          <option value="short-vowel">Short Vowel</option>
+          <option value="long-vowel">Long Vowel</option>
+          <option value="special-long-vowel">Special Long Vowel</option>
+          <option value="digraphs">Digraphs</option>
+          <option value="special-sounds">Special Sounds</option>
+          <option value="grammar">Grammar</option>
+        </select>
+      </label>
+      <label class="field"><span>رابط يوتيوب</span><input id="ytUrl" placeholder="https://www.youtube.com/watch?v=..."></label>
+      <button onclick="Admin.addYoutube()">إضافة الرابط للقائمة</button>
+
+      <div class="spacer"></div>
+      <button class="primary" onclick="Admin.saveContentLocal()">حفظ محليًا</button>
+      <button class="secondary" onclick="Admin.pushContentToGitHub()">حفظ ملف data/content.json على GitHub</button>
+      <div id="contentPreview" class="log"></div>
+    </section>
+
+    <!-- أصوات الحروف -->
+    <section class="card">
+      <h2>أصوات الحروف</h2>
+      <p class="muted small">ضعي ملفات ‎MP3‎ باسم الحرف في <code>assets/audio/letters/</code> (A.mp3 … Z.mp3). يمكنك رفعها من القسم أعلاه.</p>
+      <button onclick="Admin.scanLetters()">فحص أسماء الملفات</button>
+      <div id="lettersLog" class="log"></div>
+    </section>
+  </main>
+
+  <script src="js/auth.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/admin.js"></script>
+  <script>
+    Auth.guard(['admin']); // صفحة الأدمن للأدمن فقط
+    Admin.init();
+  </script>
+</body>
+</html>
