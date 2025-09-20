@@ -1,0 +1,40 @@
+body {
+  background-color: #eac9f2;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+h1 {
+  color: #a14c74;
+}
+
+.teacher-name {
+  color: #f7d660;
+}
+
+.letters span {
+  margin: 5px;
+  font-size: 30px;
+  cursor: pointer;
+  color: #6c7aa5;
+}
+
+.sections button {
+  display: block;
+  width: 200px;
+  margin: 10px auto;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+}
+
+.sections button:nth-child(1) { background: #f59cb3; }
+.sections button:nth-child(2) { background: #97a6f4; }
+.sections button:nth-child(3) { background: #c8e4f9; }
+.sections button:nth-child(4) { background: #c4f2ef; }
+.sections button:nth-child(5) { background: #e9f7a6; }
+.sections button:nth-child(6) { background: #f7e6a6; }
