@@ -24,6 +24,10 @@
       }
     })();
   </script>
+
+  <!-- تحميل app.js مؤجلًا لتقليل مشاكل التوقيت؛
+       النسخة الجديدة من app.js تبني الحروف تلقائيًا بعد جاهزية الصفحة -->
+  <script src="app.js" defer></script>
 </head>
 <body>
   <div class="wrap">
@@ -57,14 +61,5 @@
 
     <footer class="muted tiny">Click any letter to hear its sound.</footer>
   </div>
-
-  <!-- سكربتات في النهاية -->
-  <script src="app.js"></script>
-  <script>
-    // بناء الأحرف بعد اكتمال تحميل الصفحة
-    window.addEventListener('DOMContentLoaded', () => {
-      initLetters();
-    });
-  </script>
 </body>
 </html>
