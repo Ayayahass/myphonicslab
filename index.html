@@ -1,60 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>My Phonics Lab</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css"/>
+  <!-- إخفاء الصفحة حتى التحقق -->
+  <style>body{visibility:hidden}</style>
+  <script>
+    // حجب المحتوى حتى نتأكد من الجلسة
+    (function(){
+      const role = localStorage.getItem('role');
+      if (!role) { location.replace('login.html'); }
+      else { document.addEventListener('DOMContentLoaded',()=>{ document.body.style.visibility='visible'; }); }
+    })();
+  </script>
 </head>
 <body>
-  <div class="container">
-    <h1>My Phonics Lab</h1>
-    <h2 class="teacher-name">Teacher: Aisha</h2>
-
-    <!-- الحروف -->
-    <div class="letters">
-      <div class="capital">
-        <span onclick="playSound('a')">A</span>
-        <span onclick="playSound('b')">B</span>
-        <span onclick="playSound('c')">C</span>
+  <div class="wrap">
+    <header class="hero">
+      <h1>My Phonics Lab</h1>
+      <h2 class="teacher">Teacher: Aisha</h2>
+      <div class="right">
+        <a class="link" href="admin.html">Admin</a>
+        <button class="link" onclick="logout()">Logout</button>
       </div>
-      <div class="small">
-        <span onclick="playSound('a')">a</span>
-        <span onclick="playSound('b')">b</span>
-        <span onclick="playSound('c')">c</span>
-      </div>
-    </div>
+    </header>
 
-    <!-- الأقسام -->
-    <div class="sections">
-      <button>Short Vowel</button>
-      <button>Long Vowel</button>
-      <button>Special Long Vowel</button>
-      <button>Digraphs</button>
-      <button>Special Sounds</button>
-      <button>Grammar</button>
-    </div>
+    <section class="panel">
+      <h3>CAPITAL LETTERS</h3>
+      <div id="capitalRow" class="grid"></div>
+    </section>
+
+    <section class="panel">
+      <h3>small letters</h3>
+      <div id="smallRow" class="grid"></div>
+    </section>
+
+    <section class="panel sections">
+      <button class="pill pink">Short Vowel</button>
+      <button class="pill blue">Long Vowel</button>
+      <button class="pill lightblue">Special Long Vowel</button>
+      <button class="pill mint">Digraphs</button>
+      <button class="pill lime">Special Sounds</button>
+      <button class="pill sand">Grammar</button>
+    </section>
+
+    <footer class="muted tiny">Click any letter to hear its sound.</footer>
   </div>
 
-  <!-- استدعاء ملف الجافا سكربت -->
-  <script src="script.js"></script>
-
-  <!-- كود حصر الرموز -->
+  <script src="app.js"></script>
   <script>
-    // الأكواد المسموح بها
-    const studentCode = "STUDENT123";
-    const adminCode = "ADMIN456";
-
-    let enteredCode = prompt("Enter your access code:");
-
-    if (enteredCode === adminCode) {
-      alert("Welcome, Admin!");
-    } else if (enteredCode === studentCode) {
-      alert("Welcome, Student!");
-    } else {
-      alert("Access Denied!");
-      window.location.href = "about:blank"; // يمنع الدخول
-    }
+    initLetters();  // يبني A–Z و a–z
   </script>
 </body>
 </html>
