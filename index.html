@@ -17,13 +17,11 @@
         <span onclick="playSound('a')">A</span>
         <span onclick="playSound('b')">B</span>
         <span onclick="playSound('c')">C</span>
-        <!-- أضيفي باقي الحروف -->
       </div>
       <div class="small">
         <span onclick="playSound('a')">a</span>
         <span onclick="playSound('b')">b</span>
         <span onclick="playSound('c')">c</span>
-        <!-- أضيفي باقي الحروف -->
       </div>
     </div>
 
@@ -38,6 +36,25 @@
     </div>
   </div>
 
+  <!-- استدعاء ملف الجافا سكربت -->
   <script src="script.js"></script>
+
+  <!-- كود حصر الرموز -->
+  <script>
+    // الأكواد المسموح بها
+    const studentCode = "STUDENT123";
+    const adminCode = "ADMIN456";
+
+    let enteredCode = prompt("Enter your access code:");
+
+    if (enteredCode === adminCode) {
+      alert("Welcome, Admin!");
+    } else if (enteredCode === studentCode) {
+      alert("Welcome, Student!");
+    } else {
+      alert("Access Denied!");
+      window.location.href = "about:blank"; // يمنع الدخول
+    }
+  </script>
 </body>
 </html>
