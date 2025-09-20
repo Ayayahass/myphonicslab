@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Admin Panel</h1>
+  <form onsubmit="login(event)">
+    <input type="password" id="adminCode" placeholder="Enter Admin Code">
+    <button type="submit">Login</button>
+  </form>
+
+  <script>
+    function login(event) {
+      event.preventDefault();
+      const code = document.getElementById('adminCode').value;
+      if (code === '1234') {
+        window.location.href = 'dashboard.html'; // صفحة إدارة الملفات
+      } else {
+        alert('Invalid Code');
+      }
+    }
+  </script>
+</body>
+</html>
