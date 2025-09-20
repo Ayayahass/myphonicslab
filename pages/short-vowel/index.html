@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Short Vowel • My Phonics Lab</title>
+
+  <!-- نستخدم نمط الموقع الأصلي بدون تعديلات -->
+  <link rel="stylesheet" href="../../style.css">
+  <!-- تنسيقات الصفحة هذه فقط -->
+  <link rel="stylesheet" href="sv.css">
+</head>
+<body class="page">
+  <header class="topbar">
+    <div>
+      <a class="link" href="../../index.html">← Back</a>
+      <h1>Short Vowel</h1>
+      <p class="teacher">Teacher: <span id="teacherName">Aisha</span></p>
+    </div>
+    <nav class="top-actions">
+      <a href="../../admin.html" class="link" id="adminLink" style="display:none">Admin</a>
+      <button class="link" onclick="Auth.logout()">Logout</button>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <!-- صف 1: صور حركات الفم -->
+    <section class="sv-row" id="row-mouth">
+      <h3 class="sv-title">Mouth Shapes</h3>
+      <div class="sv-tiles" id="mouthTiles"></div>
+    </section>
+
+    <!-- صف 2: أصوات الشورت فاول -->
+    <section class="sv-row">
+      <h3 class="sv-title">Short Vowel Sounds</h3>
+      <div class="sv-vowel" id="vowelButtons"></div>
+    </section>
+
+    <!-- صف 3: فيديوهات يوتيوب -->
+    <section class="sv-row">
+      <h3 class="sv-title">Read together</h3>
+      <div class="sv-yts" id="ytWrap"></div>
+    </section>
+
+    <!-- صف 4: الإملاء -->
+    <section class="sv-row">
+      <h3 class="sv-title">Dictation</h3>
+
+      <div class="chips" id="vowelChips"></div>
+
+      <div class="dict-wrap">
+        <input id="dictInput" class="dict-box" placeholder="اكتب الكلمة هنا">
+        <div id="dictAnswer" class="dict-box">— —</div>
+      </div>
+
+      <div class="dict-controls">
+        <div class="dot yellow" aria-hidden="true"></div>
+        <button id="btnPlay" class="primary">Play</button>
+        <div class="dot purple" aria-hidden="true"></div>
+        <button id="btnShow" class="secondary">Show the word</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- مشغل صوت خاص بهذه الصفحة -->
+  <audio id="sectionPlayer" preload="none"></audio>
+
+  <script src="../../js/auth.js"></script>
+  <script src="sv.js"></script>
+  <script>
+    Auth.guard(['student','admin']);
+    if (localStorage.getItem('role') === 'admin') document.getElementById('adminLink').style.display='inline-flex';
+    SV.init();
+  </script>
+</body>
+</html>
