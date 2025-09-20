@@ -1,0 +1,10 @@
+{
+  "pages": {
+    "short-vowel": { "items": [] },
+    "long-vowel": { "items": [] },
+    "special-long-vowel": { "items": [] },
+    "digraphs": { "items": [] },
+    "special-sounds": { "items": [] },
+    "grammar": { "items": [] }
+  }
+}
