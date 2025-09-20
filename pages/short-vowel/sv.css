@@ -1,0 +1,30 @@
+/* قفل الدرس */
+.lock-overlay{position:fixed;inset:0;background:rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;z-index:50}
+.lock-card{background:var(--bg);padding:24px;border-radius:20px;box-shadow:var(--shadow);max-width:360px;width:92%}
+.lock-card h3{margin:0 0 8px}
+.lock-card .field input{text-align:center;font-size:20px;letter-spacing:1px}
+
+/* تخطيط الصفحة */
+.sv-row{background:var(--bg);padding:18px;border-radius:20px;box-shadow:var(--shadow);margin:14px 0}
+.sv-title{font-weight:900;margin:0 0 12px}
+.sv-tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:12px}
+.sv-card{background:#fff;border:1px solid #e9e6f2;border-radius:16px;padding:10px;text-align:center;box-shadow:var(--shadow)}
+.sv-card img{width:56px;height:56px;object-fit:contain;display:block;margin:6px auto 8px}
+.sv-vowel button{background:#fff;border:1px solid #ddd;border-radius:12px;padding:10px 16px;font-weight:800;box-shadow:var(--shadow);margin:6px}
+.sv-vowel button:active{transform:scale(.98)}
+
+.sv-yts{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.sv-embed{position:relative;padding-top:56.25%;border-radius:14px;overflow:hidden;background:#000;box-shadow:var(--shadow)}
+.sv-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+/* Dictation */
+.dict-wrap{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:700px){ .dict-wrap{grid-template-columns:1fr} }
+.dict-box{background:#fff;border:1px solid #e6e6ef;border-radius:14px;padding:12px;min-height:56px;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800}
+.dict-controls{display:flex;align-items:center;gap:14px;margin-top:8px}
+.dot{width:22px;height:22px;border-radius:50%}
+.dot.yellow{background:#ffd12a}
+.dot.purple{background:#8b6aa9}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.chip{background:#fff;border:1px solid #ddd;border-radius:999px;padding:8px 12px;font-weight:700;cursor:pointer}
+.chip.active{background:#4f46e5;color:#fff;border-color:#4f46e5}
