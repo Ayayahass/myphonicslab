@@ -9,7 +9,9 @@
   "vowels": {
     "short": {}
   },
-  "cons": {},
+  "cons": {
+    "b": "assets/audio/cons/b.mp3"
+  },
   "youtube": [
     "https://youtu.be/ccEpTTZW34g?si=pi75Weim87OTLLKv",
     null,
