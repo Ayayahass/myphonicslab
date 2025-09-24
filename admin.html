@@ -1,152 +1,152 @@
 <!doctype html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>لوحة الإدارة • My Phonics Lab</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Admin Page • My Phonics Lab</title>
+  <style>
+    :root{--bg:#edd6f1;--panel:#d1c6f3;--ink:#6b5b7a;--muted:#8d7f9a;--pill:#e68fb9;--white:#fff;--shadow:0 10px 24px rgba(0,0,0,.08)}
+    *{box-sizing:border-box} body{margin:0;background:#f7f4fb;font-family:system-ui,Segoe UI,Roboto,Arial}
+    a.link{color:#6b5bff;text-decoration:none;font-weight:700}
+    header{display:flex;justify-content:space-between;align-items:center;padding:18px 20px;background:#edd6f1}
+    header h1{margin:0;color:#7b5b87;font-weight:900;letter-spacing:.5px}
+    .wrap{max-width:980px;margin:0 auto 40px;padding:0 14px}
+    .grid2{display:grid;grid-template-columns:1fr 2fr;gap:14px}
+    .card{background:var(--pill);border-radius:16px;padding:14px;color:#fff;box-shadow:var(--shadow)}
+    .panel{background:var(--panel);padding:16px;border-radius:16px;box-shadow:var(--shadow);margin-top:14px}
+    h2,h3{margin:0 0 10px}
+    label.row{display:grid;grid-template-columns:160px 1fr;gap:10px;align-items:center;margin:6px 0}
+    input[type="text"],input[type="password"],input[type="file"],textarea,select{
+      width:100%;padding:10px;border-radius:10px;border:1px solid #e6e1ef;background:#fff;color:#444}
+    textarea{min-height:86px;resize:vertical}
+    .bar{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0}
+    .btn{background:#6b76e8;color:#fff;border:0;border-radius:14px;padding:12px 16px;font-weight:800;cursor:pointer;box-shadow:var(--shadow)}
+    .muted{color:#4a3f55}
+    .note{font-size:13px;color:#5f5671;margin-top:6px}
+    .sep{border-top:3px solid #c8c1ec;margin:14px 0}
+    .stack{display:grid;gap:8px}
+    .row3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    .row4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+    @media(max-width:860px){ .grid2{grid-template-columns:1fr} .row3,.row4{grid-template-columns:1fr} }
+  </style>
 </head>
-<body class="page page-admin">
-  <header class="topbar">
+<body>
+  <header>
+    <h1>Admin Page</h1>
     <div>
-      <a class="link" href="index.html">← الموقع</a>
-      <h1>لوحة الإدارة</h1>
+      <a class="link" href="index.html">Site &raquo;</a> &nbsp;|&nbsp;
+      <a class="link" href="#" onclick="Auth.logout()">Logout</a>
     </div>
-    <nav class="top-actions">
-      <button class="link" onclick="Auth.logout()">Logout</button>
-    </nav>
   </header>
 
-  <main class="wrap admin-grid">
-    <!-- الأكواد -->
-    <section class="card">
-      <h2>أكواد الدخول</h2>
-      <label class="field">
-        <span>رمز الطالب</span>
-        <input id="studentCode" type="text" placeholder="مثال: 1234">
-      </label>
-      <label class="field">
-        <span>رمز الأدمن</span>
-        <input id="adminCode" type="text" placeholder="مثال: 9999">
-      </label>
-      <button class="primary" onclick="Admin.saveCodes()">حفظ الأكواد</button>
-      <p class="muted small">الحماية على الواجهة فقط (Client-side).</p>
-    </section>
+  <main class="wrap">
+    <!-- أعلى الصفحة: الأكواد + بيانات الريبو -->
+    <div class="grid2">
+      <section class="card">
+        <h3>Admin Code</h3>
+        <label class="row"><span>Admin Code:</span><input id="adminCode" type="password" placeholder="••••"></label>
+        <label class="row"><span>Student Code:</span><input id="studentCode" type="password" placeholder="••••"></label>
+        <button class="btn" onclick="AdminLite.saveCodes()">Save Codes</button>
+        <div class="note">تُحفظ في <code>data/codes.json</code>.</div>
+      </section>
 
-    <!-- إعداد الرفع إلى GitHub -->
-    <section class="card">
-      <h2>رفع ملفات إلى الريبو</h2>
-      <label class="field"><span>GitHub Owner</span><input id="ghOwner" placeholder="username"></label>
-      <label class="field"><span>Repository</span><input id="ghRepo" placeholder="repo-name"></label>
-      <label class="field"><span>Branch</span><input id="ghBranch" value="main"></label>
-      <label class="field"><span>Personal Access Token</span><input id="ghToken" type="password" placeholder="أدخلي التوكن هنا وقت الرفع فقط"></label>
-      <p class="muted small">لن يتم حفظ التوكن. يستخدم لحظة الرفع فقط.</p>
+      <section class="card">
+        <h3>Repo uploads</h3>
+        <label class="row"><span>GitHub Owner</span><input id="ghOwner" type="text" placeholder="ayayahass"></label>
+        <label class="row"><span>Repository</span><input id="ghRepo" type="text" placeholder="myphonicslab"></label>
+        <label class="row"><span>Branch</span><input id="ghBranch" type="text" value="main"></label>
+        <label class="row"><span>Token</span><input id="ghToken" type="password" placeholder="PAT with contents:write"></label>
+        <div class="note">تُحفظ محلياً في المتصفح فقط.</div>
+      </section>
+    </div>
 
-      <div class="uploader">
-        <label class="field"><span>رفع MP3/صور</span><input id="fileInput" type="file" accept=".mp3,.jpg,.jpeg,.png,.gif" multiple></label>
+    <!-- لوحة المحتوى المبسطة -->
+    <section class="panel">
+      <h2>المحتوى</h2>
 
-           <label class="field">
-      <span>حفظ في</span>
-      <select id="destFolder">
-        <option value="assets/uploads">Uploads (افتراضي)</option>
-        
-        <option value="pages/short-vowel/assets/images">Short Vowel – Images</option>
-<option value="pages/short-vowel/assets/audio/vowels/short">Short Vowel – Vowel Audios</option>
-<option value="pages/short-vowel/assets/audio/dictation/a">Short Vowel – Dictation (a)</option>
-<option value="pages/short-vowel/assets/audio/dictation/e">Short Vowel – Dictation (e)</option>
-<option value="pages/short-vowel/assets/audio/dictation/i">Short Vowel – Dictation (i)</option>
-<option value="pages/short-vowel/assets/audio/dictation/o">Short Vowel – Dictation (o)</option>
-<option value="pages/short-vowel/assets/audio/dictation/u">Short Vowel – Dictation (u)</option>
+      <!-- اختيار الصفحة ورمزها -->
+      <div class="row4">
+        <label class="row"><span>Select Page</span>
+          <select id="pagePath">
+            <option value="pages/short-vowel">Short Vowel</option>
+          </select>
+        </label>
 
-        <button class="primary" onclick="Admin.uploadSelected()">رفع المحدد</button>
-        <div id="uploadLog" class="log"></div>
+        <label class="row"><span>Page Password</span>
+          <input id="pageLock" type="text" placeholder="SV2025">
+        </label>
+
+        <div class="row" style="align-items:end">
+          <span></span><button class="btn" onclick="AdminLite.savePageLock()">Save Page Password</button>
+        </div>
+      </div>
+
+      <div class="sep"></div>
+
+      <!-- الموارد: MP3 / صورة / رابط -->
+      <h3>الموارد</h3>
+      <div class="stack">
+        <div class="row3">
+          <label class="row"><span>Mp3 (حرف)</span>
+            <div>
+              <input id="mp3Letter" type="text" placeholder="a أو b ...">
+              <input id="mp3Input" type="file" accept=".mp3" multiple>
+            </div>
+          </label>
+
+          <label class="row"><span>Image (mouth)</span>
+            <div>
+              <input id="imgVowel" type="text" placeholder="a/e/i/o/u">
+              <input id="imgInput" type="file" accept=".png,.jpg,.jpeg,.gif">
+            </div>
+          </label>
+
+          <label class="row"><span>Link (YouTube)</span>
+            <div>
+              <input id="ytUrl" type="text" placeholder="https://www.youtube.com/watch?v=...">
+              <select id="ytSlot">
+                <option value="auto">أول خانة فارغة</option>
+                <option value="0">زر 1</option><option value="1">زر 2</option>
+                <option value="2">زر 3</option><option value="3">زر 4</option>
+                <option value="4">زر 5</option>
+              </select>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <div class="sep"></div>
+
+      <!-- الإملاء الذاتي -->
+      <h3>Dictation</h3>
+      <div class="row3">
+        <label class="row"><span>Sound (a/e/i/o/u)</span>
+          <input id="dictSound" type="text" placeholder="a">
+        </label>
+
+        <label class="row"><span>Dictation words</span>
+          <textarea id="dictWords" placeholder="كلمة في كل سطر (cat↵ bed↵ ...)"></textarea>
+        </label>
+
+        <label class="row"><span>Words uploads</span>
+          <input id="dictFiles" type="file" accept=".mp3" multiple>
+        </label>
+      </div>
+
+      <div class="sep"></div>
+
+      <div class="bar">
+        <button class="btn" onclick="AdminLite.uploadAll()">Upload</button>
+        <div class="muted" id="log">الجاهزية: 0 أخطاء.</div>
       </div>
     </section>
 
-    <!-- محتوى الصفحات -->
-    <section class="card">
-      <h2>روابط يوتيوب ومحتوى الصفحات</h2>
-      <label class="field">
-        <span>اختر الصفحة</span>
-        <select id="pageSlug">
-          <option value="short-vowel">Short Vowel</option>
-          <option value="long-vowel">Long Vowel</option>
-          <option value="special-long-vowel">Special Long Vowel</option>
-          <option value="digraphs">Digraphs</option>
-          <option value="special-sounds">Special Sounds</option>
-          <option value="grammar">Grammar</option>
-        </select>
-      </label>
-      <label class="field"><span>رابط يوتيوب</span><input id="ytUrl" placeholder="https://www.youtube.com/watch?v=..."></label>
-      <button onclick="Admin.addYoutube()">إضافة الرابط للقائمة</button>
-
-      <div class="spacer"></div>
-      <button class="primary" onclick="Admin.saveContentLocal()">حفظ محليًا</button>
-      <button class="secondary" onclick="Admin.pushContentToGitHub()">حفظ ملف data/content.json على GitHub</button>
-      <div id="contentPreview" class="log"></div>
-    </section>
-
-    <!-- أصوات الحروف -->
-    <section class="card">
-      <h2>أصوات الحروف</h2>
-      <p class="muted small">ضعي ملفات ‎MP3‎ باسم الحرف في <code>assets/audio/letters/</code> (A.mp3 … Z.mp3). يمكنك رفعها من القسم أعلاه.</p>
-      <button onclick="Admin.scanLetters()">فحص أسماء الملفات</button>
-      <div id="lettersLog" class="log"></div>
-    </section>
-
-    <!-- ===== إدارة صفحات lessons (مثل pages/short-vowel/) ===== -->
-<section class="card">
-  <h2>إدارة محتوى الصفحات (pages/*)</h2>
-
-  <!-- اختيار الصفحة -->
-  <label class="field">
-    <span>الصفحة</span>
-    <select id="pgPath">
-      <option value="pages/short-vowel">Short Vowel</option>
-      <!-- لاحقاً: انسخي السطر وغيري المسار لصفحات أخرى مثل pages/long-vowel -->
-    </select>
-  </label>
-
-  <!-- إعدادات GitHub (نستخدم نفس الحقول الموجودة بالأعلى) -->
-  <p class="muted small">تأكدي من تعبئة Owner/Repo/Branch/Token في قسم الرفع بالأعلى. سنستخدمها للحفظ.</p>
-
-  <div class="spacer"></div>
-  <button class="secondary" onclick="Pages.load()">تحميل بيانات الصفحة</button>
-  <button class="primary" onclick="Pages.save()">حفظ data.json على GitHub</button>
-
-  <div class="spacer"></div>
-  <hr style="border:0;border-top:1px solid #ddd;margin:10px 0">
-
-  <!-- تبويب بسيط -->
-  <label class="field">
-    <span>نوع المحتوى</span>
-    <select id="pgSection" onchange="Pages.renderSection()">
-      <option value="mouth">Mouth (صور حركات الفم)</option>
-      <option value="vowels.short">Short Vowel Audios</option>
-      <option value="youtube">YouTube Videos</option>
-      <option value="dictation.a">Dictation (a)</option>
-      <option value="dictation.e">Dictation (e)</option>
-      <option value="dictation.i">Dictation (i)</option>
-      <option value="dictation.o">Dictation (o)</option>
-      <option value="dictation.u">Dictation (u)</option>
-      <option value="lock">رمز فتح الدرس</option>
-    </select>
-  </label>
-
-  <!-- أدوات الإضافة حسب النوع -->
-  <div id="pgEditor" class="card" style="background:#fff"></div>
-
-  <!-- عرض القائمة + ترتيب -->
-  <div class="log" id="pgList"></div>
-</section>
+    <p class="muted" style="text-align:center;margin:18px 0">Teacher:Aisha</p>
   </main>
 
   <script src="js/auth.js"></script>
   <script src="js/utils.js"></script>
-  <script src="js/admin.js"></script>
-  <script>
-    Auth.guard(['admin']); // صفحة الأدمن للأدمن فقط
-    Admin.init();
-  </script>
+  <script src="js/admin-lite.js"></script>
+  <script>Auth.guard(['admin']);</script>
 </body>
 </html>
