@@ -44,6 +44,20 @@
 
       <div class="uploader">
         <label class="field"><span>رفع MP3/صور</span><input id="fileInput" type="file" accept=".mp3,.jpg,.jpeg,.png,.gif" multiple></label>
+
+           <label class="field">
+      <span>حفظ في</span>
+      <select id="destFolder">
+        <option value="assets/uploads">Uploads (افتراضي)</option>
+        
+        <option value="pages/short-vowel/assets/images">Short Vowel – Images</option>
+<option value="pages/short-vowel/assets/audio/vowels/short">Short Vowel – Vowel Audios</option>
+<option value="pages/short-vowel/assets/audio/dictation/a">Short Vowel – Dictation (a)</option>
+<option value="pages/short-vowel/assets/audio/dictation/e">Short Vowel – Dictation (e)</option>
+<option value="pages/short-vowel/assets/audio/dictation/i">Short Vowel – Dictation (i)</option>
+<option value="pages/short-vowel/assets/audio/dictation/o">Short Vowel – Dictation (o)</option>
+<option value="pages/short-vowel/assets/audio/dictation/u">Short Vowel – Dictation (u)</option>
+
         <button class="primary" onclick="Admin.uploadSelected()">رفع المحدد</button>
         <div id="uploadLog" class="log"></div>
       </div>
