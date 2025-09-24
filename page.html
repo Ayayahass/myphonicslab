@@ -5,6 +5,25 @@
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Section • My Phonics Lab</title>
   <link rel="stylesheet" href="style.css">
+
+  <!-- Redirect legacy page.html?slug=… to new /pages/.../ paths -->
+  <script>
+    (function () {
+      const map = {
+        "short-vowel": "pages/short-vowel/",
+        "long-vowel": "pages/long-vowel/",
+        "special-long-vowel": "pages/special-long-vowel/",
+        "digraphs": "pages/digraphs/",
+        "special-sounds": "pages/special-sounds/",
+        "grammar": "pages/grammar/"
+      };
+      const slug = new URLSearchParams(location.search).get("slug");
+      if (slug && map[slug]) {
+        // توجيه فوري بدون إضافة سجل رجوع
+        location.replace(map[slug]);
+      }
+    })();
+  </script>
 </head>
 <body class="page page-section">
   <header class="topbar">
@@ -27,7 +46,9 @@
   <script src="js/page.js"></script>
   <script>
     Auth.guard(['student','admin']);
-    if (localStorage.getItem('role') === 'admin') document.getElementById('adminLink').style.display='inline-flex';
+    if (localStorage.getItem('role') === 'admin') {
+      document.getElementById('adminLink').style.display='inline-flex';
+    }
     Section.init();
   </script>
 </body>
