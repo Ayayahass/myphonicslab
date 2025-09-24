@@ -1,76 +1,143 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Short Vowel • My Phonics Lab</title>
-
-  <!-- نستخدم نمط الموقع الأصلي بدون تعديلات -->
-  <link rel="stylesheet" href="../../style.css">
-  <!-- تنسيقات الصفحة هذه فقط -->
-  <link rel="stylesheet" href="sv.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Short Vowel • My Phonics Lab</title>
+<link rel="stylesheet" href="sv.css">
 </head>
-<body class="page">
-  <header class="topbar">
-    <div>
-      <a class="link" href="../../index.html">← Back</a>
-      <h1>Short Vowel</h1>
-      <p class="teacher">Teacher: <span id="teacherName">Aisha</span></p>
-    </div>
-    <nav class="top-actions">
-      <a href="../../admin.html" class="link" id="adminLink" style="display:none">Admin</a>
-      <button class="link" onclick="Auth.logout()">Logout</button>
-    </nav>
-  </header>
+<body>
+  <div class="card">
 
-  <main class="wrap">
-    <!-- صف 1: صور حركات الفم -->
-    <section class="sv-row" id="row-mouth">
-      <h3 class="sv-title">Mouth Shapes</h3>
-      <div class="sv-tiles" id="mouthTiles"></div>
-    </section>
+    <!-- Header -->
+    <h1 class="site">My Phonics Lab</h1>
+    <div class="chip big">Short Vowel</div>
 
-    <!-- صف 2: أصوات الشورت فاول -->
-    <section class="sv-row">
-      <h3 class="sv-title">Short Vowel Sounds</h3>
-      <div class="sv-vowel" id="vowelButtons"></div>
-    </section>
-
-    <!-- صف 3: فيديوهات يوتيوب -->
-    <section class="sv-row">
-      <h3 class="sv-title">Read together</h3>
-      <div class="sv-yts" id="ytWrap"></div>
-    </section>
-
-    <!-- صف 4: الإملاء -->
-    <section class="sv-row">
-      <h3 class="sv-title">Dictation</h3>
-
-      <div class="chips" id="vowelChips"></div>
-
-      <div class="dict-wrap">
-        <input id="dictInput" class="dict-box" placeholder="اكتب الكلمة هنا">
-        <div id="dictAnswer" class="dict-box">— —</div>
+    <!-- Row 1: mouth images + vowel labels -->
+    <section>
+      <div class="row5" id="mouthRow">
+        <!-- 5 مستطيلات للصور -->
+        <div class="box"><img id="img-a"><input type="file" data-for="a" class="up-img admin-only"></div>
+        <div class="box"><img id="img-e"><input type="file" data-for="e" class="up-img admin-only"></div>
+        <div class="box"><img id="img-i"><input type="file" data-for="i" class="up-img admin-only"></div>
+        <div class="box"><img id="img-o"><input type="file" data-for="o" class="up-img admin-only"></div>
+        <div class="box"><img id="img-u"><input type="file" data-for="u" class="up-img admin-only"></div>
       </div>
-
-      <div class="dict-controls">
-        <div class="dot yellow" aria-hidden="true"></div>
-        <button id="btnPlay" class="primary">Play</button>
-        <div class="dot purple" aria-hidden="true"></div>
-        <button id="btnShow" class="secondary">Show the word</button>
+      <div class="row5 labels">
+        <button class="v-btn" data-v="a">a</button>
+        <button class="v-btn" data-v="e">e</button>
+        <button class="v-btn" data-v="i">i</button>
+        <button class="v-btn" data-v="o">o</button>
+        <button class="v-btn" data-v="u">u</button>
       </div>
     </section>
-  </main>
 
-  <!-- مشغل صوت خاص بهذه الصفحة -->
-  <audio id="sectionPlayer" preload="none"></audio>
+    <!-- Row 2: consonants -->
+    <section class="sep">
+      <div class="cons">
+        <!-- الأحرف الساكنة مع تمييز c و g -->
+        <button class="c-btn">b</button>
+        <button class="c-btn hot">c</button>
+        <button class="c-btn">d</button>
+        <button class="c-btn">f</button>
+        <button class="c-btn hot">g</button>
+        <button class="c-btn">h</button>
+        <button class="c-btn">j</button>
+        <button class="c-btn">k</button>
+        <button class="c-btn">l</button>
+        <button class="c-btn">m</button>
+        <button class="c-btn">n</button>
+        <button class="c-btn">p</button>
+        <button class="c-btn">q</button>
+        <button class="c-btn">r</button>
+        <button class="c-btn">s</button>
+        <button class="c-btn">t</button>
+        <button class="c-btn">v</button>
+        <button class="c-btn">w</button>
+        <button class="c-btn">x</button>
+        <button class="c-btn">y</button>
+        <button class="c-btn">z</button>
+      </div>
+    </section>
 
+    <!-- Read together -->
+    <h2 class="sub">Read together</h2>
+    <section>
+      <div class="row5" id="ytRow">
+        <button class="yt-pill" data-slot="0">Youtube Video</button>
+        <button class="yt-pill" data-slot="1">Youtube Video</button>
+        <button class="yt-pill" data-slot="2">Youtube Video</button>
+        <button class="yt-pill" data-slot="3">Youtube Video</button>
+        <button class="yt-pill" data-slot="4">Youtube Video</button>
+      </div>
+      <div class="embed" id="ytEmbed" hidden></div>
+
+      <!-- إدخال رابط من نفس الصفحة (للأدمن فقط) -->
+      <div class="admin-only yt-admin">
+        <input id="ytInput" placeholder="https://www.youtube.com/watch?v=...">
+        <select id="ytWhich">
+          <option value="0">Button 1</option><option value="1">Button 2</option>
+          <option value="2">Button 3</option><option value="3">Button 4</option>
+          <option value="4">Button 5</option>
+        </select>
+        <button id="saveYT">حفظ الرابط</button>
+      </div>
+    </section>
+
+    <!-- Dictation -->
+    <h2 class="sub">Dictation</h2>
+    <section class="dict">
+      <div class="select-line">
+        <span class="muted">Select The Sound</span>
+        <div class="select-box">
+          <button class="chip" data-pick="a">a</button>
+          <button class="chip" data-pick="e">e</button>
+          <button class="chip" data-pick="i">i</button>
+          <button class="chip" data-pick="o">o</button>
+          <button class="chip" data-pick="u">u</button>
+        </div>
+      </div>
+
+      <div class="dict-row">
+        <input id="userInput" class="bigbox" placeholder="">
+        <div id="answerBox" class="bigbox"> </div>
+
+        <div class="controls">
+          <button id="playBtn" class="dot yellow"></button>
+          <span>Play</span>
+          <button id="revealBtn" class="dot purple"></button>
+          <span>Show the word</span>
+        </div>
+      </div>
+    </section>
+
+    <p class="teacher">Teacher:Aisha</p>
+  </div>
+
+  <!-- مخفي: لوحة رفع للأدمن (الرفع مباشرة من سطح المكتب) -->
+  <div class="admin-only panel">
+    <details>
+      <summary>رفع ملفات + إعداد الرفع (للأدمن)</summary>
+      <div class="grid">
+        <label>Owner <input id="ghOwner"></label>
+        <label>Repo <input id="ghRepo"></label>
+        <label>Branch <input id="ghBranch" value="main"></label>
+        <label>Token <input id="ghToken" type="password" placeholder="PAT: contents write"></label>
+      </div>
+      <div class="grid">
+        <label>رفع صوت Vowel (a/e/i/o/u) <input id="upVowel" type="file" accept=".mp3"></label>
+        <input id="vWhich" placeholder="a">
+        <button id="upVowelBtn">رفع</button>
+
+        <label>رفع صوت Consonant <input id="upCons" type="file" accept=".mp3"></label>
+        <input id="cWhich" placeholder="b">
+        <button id="upConsBtn">رفع</button>
+      </div>
+    </details>
+  </div>
+
+  <audio id="player"></audio>
   <script src="../../js/auth.js"></script>
   <script src="sv.js"></script>
-  <script>
-    Auth.guard(['student','admin']);
-    if (localStorage.getItem('role') === 'admin') document.getElementById('adminLink').style.display='inline-flex';
-    SV.init();
-  </script>
 </body>
 </html>
