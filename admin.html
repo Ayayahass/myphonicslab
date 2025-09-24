@@ -79,6 +79,52 @@
       <button onclick="Admin.scanLetters()">فحص أسماء الملفات</button>
       <div id="lettersLog" class="log"></div>
     </section>
+
+    <!-- ===== إدارة صفحات lessons (مثل pages/short-vowel/) ===== -->
+<section class="card">
+  <h2>إدارة محتوى الصفحات (pages/*)</h2>
+
+  <!-- اختيار الصفحة -->
+  <label class="field">
+    <span>الصفحة</span>
+    <select id="pgPath">
+      <option value="pages/short-vowel">Short Vowel</option>
+      <!-- لاحقاً: انسخي السطر وغيري المسار لصفحات أخرى مثل pages/long-vowel -->
+    </select>
+  </label>
+
+  <!-- إعدادات GitHub (نستخدم نفس الحقول الموجودة بالأعلى) -->
+  <p class="muted small">تأكدي من تعبئة Owner/Repo/Branch/Token في قسم الرفع بالأعلى. سنستخدمها للحفظ.</p>
+
+  <div class="spacer"></div>
+  <button class="secondary" onclick="Pages.load()">تحميل بيانات الصفحة</button>
+  <button class="primary" onclick="Pages.save()">حفظ data.json على GitHub</button>
+
+  <div class="spacer"></div>
+  <hr style="border:0;border-top:1px solid #ddd;margin:10px 0">
+
+  <!-- تبويب بسيط -->
+  <label class="field">
+    <span>نوع المحتوى</span>
+    <select id="pgSection" onchange="Pages.renderSection()">
+      <option value="mouth">Mouth (صور حركات الفم)</option>
+      <option value="vowels.short">Short Vowel Audios</option>
+      <option value="youtube">YouTube Videos</option>
+      <option value="dictation.a">Dictation (a)</option>
+      <option value="dictation.e">Dictation (e)</option>
+      <option value="dictation.i">Dictation (i)</option>
+      <option value="dictation.o">Dictation (o)</option>
+      <option value="dictation.u">Dictation (u)</option>
+      <option value="lock">رمز فتح الدرس</option>
+    </select>
+  </label>
+
+  <!-- أدوات الإضافة حسب النوع -->
+  <div id="pgEditor" class="card" style="background:#fff"></div>
+
+  <!-- عرض القائمة + ترتيب -->
+  <div class="log" id="pgList"></div>
+</section>
   </main>
 
   <script src="js/auth.js"></script>
