@@ -2,16 +2,16 @@
   "mouth": {
     "a": "",
     "e": "assets/images/mouth-e.png",
-    "i": "assets/images/mouth-i.png",
-    "o": "assets/images/mouth-o.png",
-    "u": "assets/images/mouth-u.png"
+    "i": "",
+    "o": "",
+    "u": ""
   },
   "vowels": {
     "short": {}
   },
   "cons": {},
   "youtube": [
-    "https://youtu.be/ccEpTTZW34g?si=pi75Weim87OTLLKv",
+    null,
     null,
     null,
     null,
